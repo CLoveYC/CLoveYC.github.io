@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>CLoveYC's Website - Bandit 0</title>
+        <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+        <!-- Font Awesome icons (free version)-->
+        <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+        <!-- Google fonts-->
+        <link href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css" />
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="../css/styles.css" rel="stylesheet" />
+    </head>
+    <body>
+        <!-- Navigation-->
+        <nav class="navbar navbar-expand-lg navbar-light" id="mainNav">
+            <div class="container px-4 px-lg-5">
+                <a class="navbar-brand" href="index.html">Home</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                    Menu
+                    <i class="fas fa-bars"></i>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav ms-auto py-4 py-lg-0">
+                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="../index.html">Home</a></li>
+                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="../about.html">About</a></li>
+                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="../post.html">Sample Post</a></li>
+                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="../contact.html">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <!-- Page Header-->
+        <header class="masthead">
+            <div class="container position-relative px-4 px-lg-5">
+                <div class="row gx-4 gx-lg-5 justify-content-center">
+                    <div class="col-md-10 col-lg-8 col-xl-7">
+                        <div class="post-heading">
+                            <h1>Bandit Write-up Level 0</h1>
+                            <h2 class="subheading"></h2>
+                            <span class="meta">
+                                Posted by
+                                <a href="#!">CLoveYC</a>
+                                on March 30, 2024
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <!-- Post Content-->
+        <article class="mb-4">
+            <div class="container px-4 px-lg-5">
+                <div class="row gx-4 gx-lg-5 justify-content-center">
+                    <div class="col-md-10 col-lg-8 col-xl-7">
+                        <h3>Goal:</h3>
+                        <p>Using ssh to log into the bandit game.</p>
+                        <h3>My Solution:</h3>
+                        <p>To achieve the goal, I consulted ' man ssh '. Then I found out the basic is ' ssh username@remote_host '. After understanding this, I simply used ' ssh bandit0@bandit.labs.overthewire.org '.
+                            However, an error message jumped out. The issue was that the default port for SSH is 22, but the Bandit game informed me that the correct port is 2220. So i used the ' - p ' parameter to specify my port, which is 2220.
+                            After  typing following command ' ssh bandit0@bandit.labs.overthewire.org -p 2220 ' and entering the password ' bandit0 ', I successfully connected to the Bandit server.</p>
+                        
+                        <h3>Command:</h3>
+                        <p>ssh - Secure Shell Protocol</p>
+                        <p>ssh [-46AaCfGgKkMNnqsTtVvXxYy] [-B bind_interface] [-b bind_address]
+                            [-c cipher_spec] [-D [bind_address:]port] [-E log_file]
+                            [-e escape_char] [-F configfile] [-I pkcs11] [-i identity_file]
+                            [-J destination] [-L address] [-l login_name] [-m mac_spec]
+                            [-O ctl_cmd] [-o option] [-p port] [-Q query_option] [-R address]
+                            [-S ctl_path] [-W host:port] [-w local_tun[:remote_tun]]
+                            destination [command [argument ...]]</p>
+                        <p>SSH is an encrypted protocol that allows users to connect to their remote servers securely. With SSH, user can access, control, and modify their servers. 
+                            Compared to Telnet, which is unecrypted, SSH provides a safer way to communicate.</p>
+                        
+                        <h3>Other Note</h3>
+                        <p>As we know, SSH facilitates encrypted communication. However, a question arises: What cryptographic techniques does it use? Here are some simple notes on encryption.</p>
+                        <p><b>Symmeteric Encryption</b>, also known as 'shared key' or 'shared secret key' encryption, utilizes a single key for both encryption and decryption.
+                             SSH employs this type of encryption. The process of creating a symmetric encryption key is facilitated by a 'key exchange algorithm.' 
+                             Some famous symmetric encryption algorithms include AES.</p>
+                        <p><b>Asymmetric Encryption</b>, unlike symmetric encryption, utilizes two keys: a public key and a private key. The public key is used for encryption, while the private key is used for decryption.</p>
+
+                        <h3>References</h3>
+                        <p>man ssh</p>
+                        <p>https://www.hostinger.com/tutorials/ssh-tutorial-how-does-ssh-work</p>
+                        <p>ChatGPT</p>
+                    </div>
+                </div>
+            </div>
+        </article>
+        <!-- Footer-->
+        <footer class="border-top">
+            <div class="container px-4 px-lg-5">
+                <div class="row gx-4 gx-lg-5 justify-content-center">
+                    <div class="col-md-10 col-lg-8 col-xl-7">
+                        <ul class="list-inline text-center">
+                            <li class="list-inline-item">
+                                <a href="https://github.com/CLoveYC" target="_blank" rel="noreferrer noopenner">
+                                    <span class="fa-stack fa-lg">
+                                        <i class="fas fa-circle fa-stack-2x"></i>
+                                        <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+                                    </span>
+                                </a>
+                            </li>
+                        </ul>
+                        <div class="small text-center text-muted fst-italic">Copyright &copy; CLoveYC's Website</div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <!-- Bootstrap core JS-->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Core theme JS-->
+        <script src="js/scripts.js"></script>
+    </body>
+</html>

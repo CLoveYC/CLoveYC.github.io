@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>CLoveYC's Website - Bandit 0</title>
+        <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+        <!-- Font Awesome icons (free version)-->
+        <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+        <!-- Google fonts-->
+        <link href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css" />
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="../css/styles.css" rel="stylesheet" />
+    </head>
+    <body>
+        <!-- Navigation-->
+        <nav class="navbar navbar-expand-lg navbar-light" id="mainNav">
+            <div class="container px-4 px-lg-5">
+                <a class="navbar-brand" href="../index.html">Home</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                    Menu
+                    <i class="fas fa-bars"></i>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav ms-auto py-4 py-lg-0">
+                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="../index.html">Home</a></li>
+                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="../about.html">About</a></li>
+                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="../post.html">Sample Post</a></li>
+                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="../contact.html">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <!-- Page Header-->
+        <header class="masthead">
+            <div class="container position-relative px-4 px-lg-5">
+                <div class="row gx-4 gx-lg-5 justify-content-center">
+                    <div class="col-md-10 col-lg-8 col-xl-7">
+                        <div class="post-heading">
+                            <h1>Bandit Command Level1 ~ Level6</h1>
+                            <h2 class="subheading"></h2>
+                            <span class="meta">
+                                Posted by
+                                <a href="#!">CLoveYC</a>
+                                on March 30, 2024
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <!-- Post Content-->
+        <article class="mb-4">
+            <div class="container px-4 px-lg-5">
+                <div class="row gx-4 gx-lg-5 justify-content-center">
+                    <div class="col-md-10 col-lg-8 col-xl-7">
+                        <p>I found out that from Level1 to Level6 system suggest us the same command.
+                            So I decided to organize them into a single page which is what you are looking now.</p>
+                        
+                        <h3>Commands May Need:</h3>
+                        <p><b>ls - list directory contents</b></p>
+                        <p>ls [OPTION]... [FILE]...</p>
+                        <p><!--ls is one of the most basic command. While typing 'ls', it will show user all the file in the specify folder ( default folder is current directory ).
+                            Using parameter '-l' or command 'l', you can see more details about file in the directory and can even see the hidden file. -->
+                            The 'ls' command is one of the most basic commands in Unix-like operating systems. When you type 'ls', it displays all the files in the specified folder (by default, it shows files in the current directory). 
+                            By using the '-l' parameter or the 'l' command, you can see more details about the files in the directory, including hidden files.
+                        </p>
+                        
+                        <p><b>cd - change the working directory</b></p>
+                        <p>cd [-L|-P] [directory]</p>
+                        <p><!-- cd, very common to be used. To change your directory, typing cd and the directory you want to go to.
+                            And there's something I found very convenient. It's called relative path. If you want to go to parent directory, you can use '..' instead of typing absolute path.
+                            and the '~' path allows you to go back to the home directory. While using these relative paths, you can simplify your command.
+                            Also, relative path and absolute path can be used to web's hyperlink. Combining these two useful tool, we can change our directory efficent. -->
+                            
+                            Cd is a very commonly used command. To change your directory, simply type cd followed by the directory you want to go to. 
+                            One convenient feature is the use of relative paths. Instead of typing the absolute path, you can use '..' to go to the parent directory, and '~' to return to the home directory. Using these relative paths can simplify your commands. 
+                            Additionally, both relative and absolute paths can be used for web hyperlinks. By combining these two useful tools, we can efficiently navigate through directories.
+                        </p>
+                        
+                        <p><b>cat - concatenate files and print on the standard output</b></p>
+                        <p>cat [OPTION]... [FILE]...</p>
+                        <p><!--cat is also a great tool. The command 'cat' can help us enter any kind of file, included jpg file, gif file.
+                            There's  also a great way to exchange 'nano' or 'vim' by adding '>' after it. You can add text by doing that.
+                            ex: cat > try1  Test. After typing 'cat try1', the message 'Test.' will jump out. One of the easiest way to look a file. -->
+                            Cat is one of the easiest ways to view a file. The 'cat' command allows us to view the contents of various types of files, including jpg and gif files.
+                             Additionally, instead of using 'nano' or 'vim', we can use 'cat > file' to add text to files.
+                             For example, typing 'cat > try1 Test' will add the text 'Test' to the file 'try1'. After typing 'cat try1', the message 'Test' will be displayed.
+                        </p>
+
+                        <p><b>du - estimate file space usage</b></p>
+                        <p>
+                            du [OPTION]... [FILE]...
+                            du [OPTION]... --files0-from=F
+                        </p>
+                        <p>
+                            <!-- du, the abbreviation of disk usage, will show user the file's real size. Compared to 'll' ( similar to 'ls -l'), du show the size of file and ll demonstrate the disk size. 
+                            In the usual case, 'ls -l' is less than the size reported by 'du'. If you are curious about this, please read the References-4.-->
+                            
+                            Du, short for disk usage, displays the real size of files for the user. In comparison, 'll' (similar to 'ls -l') shows the file size, while 'du' demonstrates the disk usage.
+                            In most cases, the size reported by 'ls -l' is less than that reported by 'du'. If you're curious about this difference, please refer to References-4.
+                        </p>
+
+                        <p><b>file - determine file type</b></p>
+                        <p>[-bcdEhiklLNnprsSvzZ0] [--apple] [--exclude-quiet] [--extension]
+                            [--mime-encoding] [--mime-type] [-e testname] [-F separator]
+                            [-f namefile] [-m magicfiles] [-P name=value] file ... -C [-m
+                            magicfiles] [--help]
+                        </p>
+                        <p>
+                            <!-- File is a command which can help you determine file type. By typing it, the output will show you the type of a file.
+                            However, the identify of a file is by it's 'magic number'. Due to this factor, the result of determine could be wrong if someone modify the magic number or delete magic number.
+                            In that case which a file doesn't have magic number, computer'll use other way to identify a file. By the way, if a file have two kind of magic number, it'll only show the first one while none of any propts are added. -->
+                        
+                            The 'file' command is used to determine the file type. By typing it, the output will show you the type of a file. However, a file's identification is based on its 'magic number'. 
+                            Due to this factor, the result of determination could be incorrect if someone modifies or deletes the magic number. In cases where a file doesn't have a magic number, the computer will use other methods to identify the file. 
+                            Additionally, if a file has multiple magic numbers, only the first one will be displayed unless any prompts are added.
+                        </p>
+
+                        <p><b>find - search for files in a directory hierarchy</b></p>
+                        <p>find [-H] [-L] [-P] [-D debugopts] [-Olevel] [starting-point...] [expression]</p>
+                        <p>
+                            <!-- Just like the word 'find', the command help us search the files. If only type 'find [filename]', system usually output lots of files.
+                            As a result, parameters getting much more important. If you know the file exactly name, just add [-name] ( find -name [filename] ).
+                            If you know where it is, just add the directory before filename ( find [directory] [filename] ). There's lots of other prompts can be added.
+                            For example, specify a user or specify the file which you have the permission. If you want to learn more about this, have a look on References-8 and References-9. -->
+
+                            Just like the word 'find', the 'find' command helps us search for specific files. When you only type 'find [filename]', the system typically outputs many files, so specifying parameters becomes crucial. 
+                            If you know the exact filename, simply add '-name' (e.g., 'find -name [filename]'). If you know the directory where the file is located, add the directory before the filename (e.g., 'find [directory] [filename]'). 
+                            There are numerous other options that can be included, such as specifying a user or files for which you have permission. For further exploration, refer to References-8 and References-9.
+                        </p>
+
+                        <h3>References</h3>
+                        <p>https://man7.org/linux/man-pages/man1/</p>
+                        <p>https://www.cyberciti.biz/faq/relative-pathname/</p>
+                        <p>https://miahsuwork.medium.com/第一週-command-line-基本指令與操作-f4da8bcfdfa</p>
+                        <p>https://www.unix.com/unix-for-dummies-questions-and-answers/13232-ls-l-du.html</p>
+                        <p>https://blog.csdn.net/cgzhello1/article/details/7839534</p>
+                        <p>https://ioflood.com/blog/file-linux-command/</p>
+                        <p>https://www.runoob.com/linux/linux-comm-du.html</p>
+                        <p>https://blog.gtwang.org/linux/unix-linux-find-command-examples/</p>
+                        <p>https://www.geeksforgeeks.org/find-command-in-linux-with-examples/</p>
+                        <p><b>ChatGPT</b> to correct my grammar</p>
+                    </div>
+                </div>
+            </div>
+        </article>
+        <!-- Footer-->
+        <footer class="border-top">
+            <div class="container px-4 px-lg-5">
+                <div class="row gx-4 gx-lg-5 justify-content-center">
+                    <div class="col-md-10 col-lg-8 col-xl-7">
+                        <ul class="list-inline text-center">
+                            <li class="list-inline-item">
+                                <a href="https://github.com/CLoveYC" target="_blank" rel="noreferrer noopenner">
+                                    <span class="fa-stack fa-lg">
+                                        <i class="fas fa-circle fa-stack-2x"></i>
+                                        <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+                                    </span>
+                                </a>
+                            </li>
+                        </ul>
+                        <div class="small text-center text-muted fst-italic">Copyright &copy; CLoveYC's Website</div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <!-- Bootstrap core JS-->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Core theme JS-->
+        <script src="js/scripts.js"></script>
+    </body>
+</html>

@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>CLoveYC's Website - Bandit 1</title>
+        <title>CLoveYC's Website - Bandit 3</title>
         <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
         <!-- Font Awesome icons (free version)-->
         <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
@@ -40,12 +40,12 @@
                 <div class="row gx-4 gx-lg-5 justify-content-center">
                     <div class="col-md-10 col-lg-8 col-xl-7">
                         <div class="post-heading">
-                            <h1>Bandit Write-up Level 1</h1>
+                            <h1>Bandit Write-up Level 3</h1>
                             <h2 class="subheading"></h2>
                             <span class="meta">
                                 Posted by
                                 <a href="../about.html">CLoveYC</a>
-                                on April 2, 2024
+                                on April 3, 2024
                             </span>
                         </div>
                     </div>
@@ -58,26 +58,33 @@
                 <div class="row gx-4 gx-lg-5 justify-content-center">
                     <div class="col-md-10 col-lg-8 col-xl-7">
                         <h3>Goal:</h3>
-                        <p>Using command to get the password which is stored in a file called 'readme'.</p>
-
-                        <p>Login command: ssh bandit0@bandit.labs.overthewire.org -p 2220</p>
-                        <p>Password: bandit0</p>
+                        <p>Using command to get the password which is stored in a file called 'spaces in this filename'</p>
+                        <p>Login command: ssh bandit2@bandit.labs.overthewire.org -p 2220</p>
+                        <p>Password: rRGizSaX8Mk1RTb1CNQoXTcYZWU6lgzi</p>
 
                         <h3>My Solution:</h3>
-                        <p><!-- According to <a href="post\Bandit Command 1to6.html">Bandit Command 1 to 6</a>, simply use 'ls' to see what we have.
-                            When I type 'ls', system output a file called 'readme' which is we are looking for. So, I use command 'cat' to see what's inside.
-                            After typing 'cat readme', we got a message. And that's the end of this level. We got the key: NH2SXQwcBdpmTEzi3bvBHMM9H66vVXjL. -->
-
-                            According to <a href="Bandit Command 1to6.html">Bandit Command 1 to 6</a>, simply use 'ls' to see what we have. 
-                            When I type 'ls', the system outputs a file called 'readme', which is what we are looking for. 
-                            So, I use the 'cat' command to see what's inside. After typing 'cat readme', we get a message. And that's the end of this level. We got the key: NH2SXQwcBdpmTEzi3bvBHMM9H66vVXjL.
-
+                        <p>
+                            <!--
+                                This level is similar to the previous level. But in this case, what we need to solve is the space problem.
+                                When typing command like 'cat spaces in this filename', system will consider it as four respective files. So, there must be a way to let system know that the space is an element included in it.
+                                As soon as the problem arise, the escape character immediately came into my mind. As a result, I give it a try 'cat spaces\ in\ this\ filename'.
+                                Then system gave me the key. But I started wondering, is there another solution? After thinking for a while, I noticed that I can use double quotation mark.
+                                By the help of double quotation mark, the system theoretical consider "spaces in this filename" as a single file, which can help us solve this problem.
+                                Therefore, I gave it a try and successfully got the key. In my opinion, I think both of solutions is great.
+                                Althouugh having spaces in the filename might not be a good filename, but when facing these kind of file, both of these can efficenly help.
+                            -->
+                            This level is similar to the previous one. However, in this case, the challenge involves dealing with spaces in filenames. 
+                            When typing a command like 'cat spaces in this filename', the system will interpret it as four separate files. Therefore, there must be a way to let the system know that the space is part of the filename. 
+                            As soon as the problem arose, the escape character immediately came to mind. Consequently, I tried 'cat spaces\ in\ this\ filename', and the system provided me with the key. 
+                            However, I began to wonder if there was another solution. After some thought, I realized that I could use double quotation marks. By enclosing the filename in double quotation marks, the system theoretically considers "spaces in this filename" as a single file, which can help solve this problem. 
+                            Therefore, I tried it and successfully obtained the key. In my opinion, both solutions are excellent. 
+                            Although having spaces in filenames might not be ideal, when faced with such files, both of these methods can efficiently help.
                         </p>
-                        
-                        <h3>The Key</h3>
-                        <p><b>NH2SXQwcBdpmTEzi3bvBHMM9H66vVXjL</b></p>
 
-                        <img src="..\assets\img\level 1.png">
+                        <h3>The Key</h3>
+                        <p><b>aBZ0W5EmUfAf7kHTQeOwd8bauFJ2lAiG</b></p>
+
+                        <img src="..\assets\img\level 3.png">
 
                     </div>
                 </div>

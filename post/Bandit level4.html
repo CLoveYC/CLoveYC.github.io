@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>CLoveYC's Website - Bandit 4</title>
+        <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+        <!-- Font Awesome icons (free version)-->
+        <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+        <!-- Google fonts-->
+        <link href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css" />
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="../css/styles.css" rel="stylesheet" />
+    </head>
+    <body>
+        <!-- Navigation-->
+        <nav class="navbar navbar-expand-lg navbar-light" id="mainNav">
+            <div class="container px-4 px-lg-5">
+                <a class="navbar-brand" href="../index.html">Home</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                    Menu
+                    <i class="fas fa-bars"></i>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav ms-auto py-4 py-lg-0">
+                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="../index.html">Home</a></li>
+                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="../about.html">About</a></li>
+                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="../post.html">Sample Post</a></li>
+                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="../contact.html">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <!-- Page Header-->
+        <header class="masthead">
+            <div class="container position-relative px-4 px-lg-5">
+                <div class="row gx-4 gx-lg-5 justify-content-center">
+                    <div class="col-md-10 col-lg-8 col-xl-7">
+                        <div class="post-heading">
+                            <h1>Bandit Write-up Level 4</h1>
+                            <h2 class="subheading"></h2>
+                            <span class="meta">
+                                Posted by
+                                <a href="../about.html">CLoveYC</a>
+                                on April 4, 2024
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <!-- Post Content-->
+        <article class="mb-4">
+            <div class="container px-4 px-lg-5">
+                <div class="row gx-4 gx-lg-5 justify-content-center">
+                    <div class="col-md-10 col-lg-8 col-xl-7">
+                        <h3>Goal:</h3>
+                        <p>Using command to get the password which is stored in a hidden file in the 'inhere' directory</p>
+                        <p>Login command: ssh bandit3@bandit.labs.overthewire.org -p 2220</p>
+                        <p>Password: aBZ0W5EmUfAf7kHTQeOwd8bauFJ2lAiG</p>
+
+                        <h3>My Solution:</h3>
+                        <p>
+                            <!-- In this level we need to find a hidden file in the 'inhere' directory. First, we use 'ls' to see if there has any file to be used.
+                            After command 'ls', a directory called inhere showed up. Therefore, we use 'cd inhere' to entry the directory.
+                            In the 'inhere' directory, we used 'ls' again. However, there didn't have any file. After checking the goal, I noticed the word 'hidden file'.
+                            As a result, I used the command 'ls -l', 'l'. The former one' output is 'total 0'. The later one output nothing.
+                            After this strange thing happend, I was wondering if there's could be anything wrong. So I consulted to the man page, to my surprised, I found a parameter which can show the hidden file.
+                            That's '-a'. Therfore, I used it immidiately. After typing in 'ls -a', we find the hidden file called '.hidden'.
+                            Finding the file means finding the key. As the file showed up, the key can be easily got by the command 'cat .hidden'. -->
+                            
+                            In this level, we need to find a hidden file in the 'inhere' directory. First, we use 'ls' to see if there are any files to be used. 
+                            After the 'ls' command, a directory called 'inhere' showed up. Therefore, we use 'cd inhere' to enter the directory. 
+                            In the 'inhere' directory, we used 'ls' again. However, there didn't appear to be any files. After checking the goal, I noticed the term 'hidden file'. 
+                            As a result, I used the command 'ls -l' or 'll'. The former one's output is 'total 0'. The latter one outputs nothing. 
+                            When this unusual occurrence happened, I wondered if there could be anything wrong. So I consulted the man page and, to my surprise, I found a parameter that can show hidden files, which is '-a'. 
+                            Therefore, I used it immediately. After typing 'ls -a', we found the hidden file called '.hidden'. Finding the file means finding the key. 
+                            As the file showed up, the key can be easily obtained using the command 'cat .hidden'.
+                        </p>
+                        <p>
+                            <!-- However, when I got the key and want to use this new parameter agian, I mistyped 'ls' to 'll'. To my surprised, system didn't show error, but demonstrating us the hidden files and the details of it.
+                            I was really surprised to this consequence. So I started search on the Internet, some people say that alias ll = ls -l, which might be correct in different setting and environment.
+                            But in my solving process, we can see that when using 'ls -l' system' response is 'total 0'. However, while using 'll', system give all the details and hidden files.
+                            In my opinion, the correct way to equivilant 'll' is the command parameter:'-al'. It can not only show the details but show the hidden files, which functionally work same with 'll'. -->
+                        
+                            However, when I got the key and wanted to use this new parameter again, I mistyped 'ls' as 'll'. To my surprise, the system didn't show an error but instead demonstrated the hidden files and their details. I was really surprised by this consequence. 
+                            So I started searching on the Internet. Some people say that 'll' is an alias for 'ls -l', which might be correct in different settings and environments. 
+                            However, in my solving process, we can see that when using 'ls -l', the system's response is 'total 0'. On the other hand, when using 'll', the system displays all the details and hidden files. In my opinion, the correct equivalent of 'll' is the command parameter '-al'. 
+                            It can not only show the details but also display the hidden files, whose functionality is exactly the same as 'll'.
+                        </p>
+
+                        <h3>The Key</h3>
+                        <p><b>2EW7BBsr6aMMoJ2HjW067dm8EgX26xNe</b></p>
+
+                        <img src="..\assets\img\level 4.png">
+                        <br><br>
+                        <h3>References</h3>
+                        <p>https://www.quora.com/What-is-the-difference-between-ls-l-and-the-ll-command-on-Linux</p>
+                        <p>https://www.scaler.com/topics/ll-command-in-linux/</p>
+                    </div>
+                </div>
+            </div>
+        </article>
+        <!-- Footer-->
+        <footer class="border-top">
+            <div class="container px-4 px-lg-5">
+                <div class="row gx-4 gx-lg-5 justify-content-center">
+                    <div class="col-md-10 col-lg-8 col-xl-7">
+                        <ul class="list-inline text-center">
+                            <li class="list-inline-item">
+                                <a href="https://github.com/CLoveYC" target="_blank" rel="noreferrer noopenner">
+                                    <span class="fa-stack fa-lg">
+                                        <i class="fas fa-circle fa-stack-2x"></i>
+                                        <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+                                    </span>
+                                </a>
+                            </li>
+                        </ul>
+                        <div class="small text-center text-muted fst-italic">Copyright &copy; CLoveYC's Website</div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <!-- Bootstrap core JS-->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Core theme JS-->
+        <script src="js/scripts.js"></script>
+    </body>
+</html>

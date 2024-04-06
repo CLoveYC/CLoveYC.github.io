@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>CLoveYC's Website - Bandit 1</title>
+        <title>CLoveYC's Website - Bandit 5</title>
         <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
         <!-- Font Awesome icons (free version)-->
         <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
@@ -40,12 +40,12 @@
                 <div class="row gx-4 gx-lg-5 justify-content-center">
                     <div class="col-md-10 col-lg-8 col-xl-7">
                         <div class="post-heading">
-                            <h1>Bandit Write-up Level 2</h1>
+                            <h1>Bandit Write-up Level 5</h1>
                             <h2 class="subheading"></h2>
                             <span class="meta">
                                 Posted by
                                 <a href="../about.html">CLoveYC</a>
-                                on April 3, 2024
+                                on April 6, 2024
                             </span>
                         </div>
                     </div>
@@ -58,46 +58,36 @@
                 <div class="row gx-4 gx-lg-5 justify-content-center">
                     <div class="col-md-10 col-lg-8 col-xl-7">
                         <h3>Goal:</h3>
-                        <p>Using command to get the password which is stored in a file called '-'.</p>
-
-                        <p>Login command: ssh bandit1@bandit.labs.overthewire.org -p 2220</p>
-                        <p>Password: NH2SXQwcBdpmTEzi3bvBHMM9H66vVXjL</p>
+                        <p>Using command to get the password which is stored in the only human-readable file in the 'inhere' directory.</p>
+                        <p>Login command: ssh bandit4@bandit.labs.overthewire.org -p 2220</p>
+                        <p>Password: 2EW7BBsr6aMMoJ2HjW067dm8EgX26xNe</p>
 
                         <h3>My Solution:</h3>
-                        <p><!--
-                            As we know, 'cat' can help us view a file. But what if a file name is started with '-'?
-                            If you do nothing, just add the file after the command, system will consider the filename as a parameter.
-                            As a result, we have two solution can be used. First, using standard output by adding < after the command.
-                            It'll be like 'cat < [file]'. On the other hand, we can use the file's path. The most convenient way of this case is './-[file]'.
-                            You specify the location of the currecnt directory and the file. Using one of these way, we can get the key:rRGizSaX8Mk1RTb1CNQoXTcYZWU6lgzi-->
-                            
-                            As we know, 'cat' can help us view a file. But what if a file name starts with '-'? If you do nothing and simply add the file after the command, the system will consider the filename as a parameter. 
-                            As a result, we have two solutions that can be used. First, using standard input by adding '<' after the command. It'll be like 'cat < [file]'. On the other hand, we can use the file's path. The most convenient way in this case is './-[file]'. 
-                            You specify the location of the current directory and the file. By using one of these methods, we can obtain the key: rRGizSaX8Mk1RTb1CNQoXTcYZWU6lgzi.
+                        <p>
+                            <!--
+                                As usual, we used 'ls' to see what we got and 'cd inhere' to enter the directory. After we are in the 'inhere' directory, we used 'ls'. 
+                                However, this time there were 10 files in it, from -file00 to -file10. To this unexpected case, we checked the goal again.
+                                That's the reason why I noticed the word 'human-readable'. So I istantly used 'find inhere -readable', but I didn't suspect that the output is all of the ten files.
+                                I was curious about this so I picked one of the file and use command 'cat' to see what's inside. Inside the file was garbled characters which is obvious not human-readable.
+                                So I consulted to man page again, I noticed that the readable in file command means that users have the permission to enter a file instead of the text inside a file is readable.
+                                Thinking again I realize there is another command called 'file' which can show me the type of the file. By filtering the output, I can choose the one which is ASCII.
+                                After knowing that, I use 'file inhere/*'. (* means all the file. inhere/* means all the files in the directory 'inhere')
+                                Not surprised that only file07 is ASCII, so we use 'cat inhere/-file07' and got the key.
+                            -->
+
+                            As usual, we used 'ls' to see what we had and 'cd inhere' to enter the directory. Upon entering the 'inhere' directory, we used 'ls'. 
+                            However, this time there were 10 files in it, from -file00 to -file09. Encountering this unexpected scenario, we revisited the objective. It was then that I noticed the term 'human-readable'. 
+                            I promptly used 'find inhere -readable', but to my surprise, the output included all ten files. Perplexed by this, I selected one of the files and used the 'cat' command to view its contents. 
+                            Inside the file were garbled characters, clearly not human-readable text. Returning to the man page, I realized that 'readable' in the 'file' command refers to users having permission to access a file rather than the readability of the file's content. 
+                            Upon further consideration, I remembered the 'file' command, which can identify the type of a file. By filtering the output, I could identify files encoded in ASCII. Using 'file inhere/*' (where '*' denotes all files), I discovered that only file07 was ASCII-encoded. Therefore, I used 'cat inhere/-file07' and obtained the key.
                         </p>
 
-                        <h3>Difference</h3>
-                        <p><!--
-                            With two difference solutions in hand, a question rise: What's the differences between 'cat < -' standard input and 'cat ./-' relative path. 
-                            From user perspection, they are same. The difference is when you use standard input, the system put file into 'cat' function. That's why you can see it.
-                            Meanwhile, the relative path just like normal 'cat' command. By specifying the path to avoid system considering it as a parameter. 
-                            Compared both the solutions, the relative path is more reliable. Due to the path it took, system won't misjudge any file started with '-' as a parameter, which can avoid some potential errors.-->
-                            
-                            With two different solutions in hand, a question arises: What are the differences between 'cat < -' for standard input and 'cat ./-' for a relative path? 
-                            From the user's perspective, they appear to be the same. The difference is that when you use standard input, the system places the file into the 'cat' command, which is why you can see it. 
-                            Meanwhile, the relative path functions just like a normal 'cat' command. By specifying the path, you can avoid the system considering it as a parameter. Comparing both solutions, the relative path is more reliable. 
-                            Due to the path it takes, the system won't misjudge any file starting with '-' as a parameter, which can avoid some potential errors.
-                        </p>
                         <h3>The Key</h3>
-                        <p><b>rRGizSaX8Mk1RTb1CNQoXTcYZWU6lgzi</b></p>
+                        <p><b>lrIWWI6bB37kxfiCQZqUdOIYfr6eEeqR</b></p>
 
-                        <img src="..\assets\img\level 2.png">
+                        <img src="..\assets\img\level 5.png">
                         <br><br>
                         <h3>References</h3>
-                        <p>man cat</p>
-                        <p>https://www.unix.com/unix-for-dummies-questions-and-answers/11998-how-cat-file-name-starts.html</p>
-                        <p>https://askubuntu.com/questions/1190700/what-is-the-difference-between-cat-filename-and-cat-filename</p>
-                        <p>https://stackoverflow.com/questions/42187323/how-to-open-a-dashed-filename-using-terminal</p>
                     </div>
                 </div>
             </div>

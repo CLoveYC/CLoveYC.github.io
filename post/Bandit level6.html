@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>CLoveYC's Website - Bandit 5</title>
+        <title>CLoveYC's Website - Bandit 6</title>
         <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
         <!-- Font Awesome icons (free version)-->
         <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
@@ -40,12 +40,12 @@
                 <div class="row gx-4 gx-lg-5 justify-content-center">
                     <div class="col-md-10 col-lg-8 col-xl-7">
                         <div class="post-heading">
-                            <h1>Bandit Write-up Level 5</h1>
+                            <h1>Bandit Write-up Level 6</h1>
                             <h2 class="subheading"></h2>
                             <span class="meta">
                                 Posted by
                                 <a href="../about.html">CLoveYC</a>
-                                on April 6, 2024
+                                on April 8, 2024
                             </span>
                         </div>
                     </div>
@@ -58,40 +58,45 @@
                 <div class="row gx-4 gx-lg-5 justify-content-center">
                     <div class="col-md-10 col-lg-8 col-xl-7">
                         <h3>Goal:</h3>
-                        <p>Using command to get the password which is stored in the only human-readable file in the 'inhere' directory.</p>
-                        <p>Login command: ssh bandit4@bandit.labs.overthewire.org -p 2220</p>
-                        <p>Password: 2EW7BBsr6aMMoJ2HjW067dm8EgX26xNe</p>
+                        <p>Using command to get the password which is stored in a file somewhere under the 'inhere' directory and has three properties:
+                            <br>1. human-readable, <br>2. 1033 bytes in size, <br>3. not executable.
+                        </p>
+                        <p>Login command: ssh bandit5@bandit.labs.overthewire.org -p 2220</p>
+                        <p>Password: lrIWWI6bB37kxfiCQZqUdOIYfr6eEeqR</p>
 
                         <h3>My Solution:</h3>
                         <p>
-                            <!--
-                                As usual, we used 'ls' to see what we got and 'cd inhere' to enter the directory. After we are in the 'inhere' directory, we used 'ls'. 
-                                However, this time there were 10 files in it, from -file00 to -file10. To this unexpected case, we checked the goal again.
-                                That's the reason why I noticed the word 'human-readable'. So I istantly used 'find inhere -readable', but I didn't suspect that the output is all of the ten files.
-                                I was curious about this so I picked one of the file and use command 'cat' to see what's inside. Inside the file was garbled characters which is obvious not human-readable.
-                                So I consulted to man page again, I noticed that the readable in file command means that users have the permission to enter a file instead of the text inside a file is readable.
-                                Thinking again I realize there is another command called 'file' which can show me the type of the file. By filtering the output, I can choose the one which is ASCII.
-                                After knowing that, I use 'file inhere/*'. (* means all the file. inhere/* means all the files in the directory 'inhere')
-                                Not surprised that only file07 is ASCII, so we use 'cat inhere/-file07' and got the key.
-                            -->
+                            <!-- In my opinion, the property of size is the one maybe unique. So I consulted to the man page of file and find.
+                            The parameter '-size' under command 'find' caught my eye. By using the parameter of 'find [file] -size number[cwbkMG]', you can specify a specific file which is exactly same size as you want.
+                            After knowing that, I used 'find inhere/* -size 1033c' and found there's only one file conform to the conditions which is inhere/maybehere07/.file2. So we used' cat inhere/maybehere07/.file2' and got the key.-->
+                        
+                            In my opinion, the size property may be unique. So I consulted the man pages for both 'file' and 'find'. 
+                            The parameter '-size' under the 'find' command caught my eye. By using the parameter 'find [file] -size number[cwbkMG]', you can specify a specific file with the exact size you want. 
+                            After learning this, I used 'find inhere/* -size 1033c' and found that only one file met the specified conditions: 'inhere/maybehere07/.file2'. Then, we used 'cat inhere/maybehere07/.file2' and obtained the key.
+                        </p>
 
-                            As usual, we used 'ls' to see what we had and 'cd inhere' to enter the directory. Upon entering the 'inhere' directory, we used 'ls'. 
-                            However, this time there were 10 files in it, from -file00 to -file09. Encountering this unexpected scenario, we revisited the objective. It was then that I noticed the term 'human-readable'. 
-                            I promptly used 'find inhere -readable', but to my surprise, the output included all ten files. Perplexed by this, I selected one of the files and used the 'cat' command to view its contents. 
-                            Inside the file were garbled characters, clearly not human-readable text. Returning to the man page, I realized that 'readable' in the 'file' command refers to users having permission to access a file rather than the readability of the file's content. 
-                            Upon further consideration, I remembered the 'file' command, which can identify the type of a file. By filtering the output, I could identify files encoded in ASCII. Using 'file inhere/*' (where '*' denotes all files), I discovered that only file07 was ASCII-encoded. Therefore, I used 'cat inhere/-file07' and obtained the key.
+                        <p>
+                            <!-- While reading the introduction of parameter size, I noticed that there are some interesting properties of this parameter.
+                                First, the size is consistent with the result you get for 'ls -l'. If you are interesting about this, please consulted to the Reference-1.
+                                Another one is that when you want to signify the greater or less than some size, add + or - before number.
+                                For example: find / -size +1M or find ~ -size -1055c. You can even combine both of it: find . -size +10M -size -20M-->
+                        
+                                While reading the introduction to the size parameter, I noticed that there are some interesting properties associated with it. 
+                                First, the size is consistent with the results obtained from 'ls -l'. If you are interested in this, please refer to Reference-1. 
+                                Another interesting property is that when you want to specify greater or less than a certain size, you add + or - before the number. 
+                                For example: 'find / -size +1M' or 'find ~ -size -1055c'. You can even combine both: 'find . -size +10M -size -20M'.
                         </p>
 
                         <h3>The Key</h3>
-                        <p><b>lrIWWI6bB37kxfiCQZqUdOIYfr6eEeqR</b></p>
+                        <p><b>P4L4vucdmLnm8I7Vl7jG1ApGSfjYKqJU</b></p>
 
-                        <img src="..\assets\img\level 5.png">
+                        <img src="..\assets\img\level 6.png">
                         <br><br>
                         <h3>References</h3>
                         <p>https://man7.org/linux/man-pages/man1/find.1.html</p>
-                        <p>https://stackoverflow.com/questions/14505218/finding-human-readable-files-on-unix</p>
-                        <p>https://blog.gtwang.org/linux/unix-linux-find-command-examples/</p>
-                        <p>https://blog.miniasp.com/post/2010/08/27/Linux-find-command-tips-and-notice</p>
+                        <p>https://www.cnblogs.com/rusking/p/7403160.html</p>
+                        <p>https://linuxconfig.org/how-to-use-find-command-to-search-for-files-based-on-file-size</p>
+
                     </div>
                 </div>
             </div>

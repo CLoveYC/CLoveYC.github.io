@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>CLoveYC's Website - Bandit 7</title>
+        <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+        <!-- Font Awesome icons (free version)-->
+        <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+        <!-- Google fonts-->
+        <link href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css" />
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="../css/styles.css" rel="stylesheet" />
+    </head>
+    <body>
+        <!-- Navigation-->
+        <nav class="navbar navbar-expand-lg navbar-light" id="mainNav">
+            <div class="container px-4 px-lg-5">
+                <a class="navbar-brand" href="../index.html">Home</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                    Menu
+                    <i class="fas fa-bars"></i>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav ms-auto py-4 py-lg-0">
+                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="../index.html">Home</a></li>
+                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="../about.html">About</a></li>
+                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="../post.html">Sample Post</a></li>
+                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="../contact.html">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <!-- Page Header-->
+        <header class="masthead">
+            <div class="container position-relative px-4 px-lg-5">
+                <div class="row gx-4 gx-lg-5 justify-content-center">
+                    <div class="col-md-10 col-lg-8 col-xl-7">
+                        <div class="post-heading">
+                            <h1>Bandit Write-up Level 7</h1>
+                            <h2 class="subheading"></h2>
+                            <span class="meta">
+                                Posted by
+                                <a href="../about.html">CLoveYC</a>
+                                on April 9, 2024
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <!-- Post Content-->
+        <article class="mb-4">
+            <div class="container px-4 px-lg-5">
+                <div class="row gx-4 gx-lg-5 justify-content-center">
+                    <div class="col-md-10 col-lg-8 col-xl-7">
+                        <h3>Goal:</h3>
+                        <p>Using command to get the password which is stored in a file somewhere on the server directory and has three properties:
+                            <br>1. Owned by user bandit7, <br>2. owned by group bandit6, <br>3. 33 bytes in size.
+                        </p>
+                        <p>Login command: ssh bandit6@bandit.labs.overthewire.org -p 2220</p>
+                        <p>Password: P4L4vucdmLnm8I7Vl7jG1ApGSfjYKqJU</p>
+
+                        <h3>My Solution:</h3>
+                        <p>
+                            <!--As we know, the command 'find' can specify a number of file's size. Following that concept, we have the first parameter '-size 33c'.
+                                Consulting to find's man page, the word 'user' and 'group' caught my eye. By adding user and group after the parameters , we can specify a specific user or group.
+                                Combined these three information, now the command looks like 'find -size 33c -user bandit7 -group bandit6'. The next problem we need to solve is 'Where is the file?'
+                                According to the goal, the file in somewhere on the server. As a result, we scan the root directory which include all files on the system.
+                                With all informations we have, we typed in 'find / -size 33c -user bandit7 -group bandit6'. However, there are lots of file and most of it can't be viewed by us which is mean we don't have permission.
+                                By searching the permission denied errors, I found out that we can use 2>/dev/null to avoid the one we don't get permission.
+                                '2>/dev/null' can help us exclude all error. When the errors happened, it'll be redirect to the /dev/null. That's the reason using '2>/dev/null' all the error will disappear.
+                                Typing 'find / -size 33c -user bandit7 -group bandit6 2>/dev/null', we can easily get a path which lead us to the key.-->
+
+                                As we know, when we use the 'find' command, we can specify files based on their size. Following this concept, we first use '-size 33c' as a parameter. While consulting the man page of 'find' command, I noticed the terms 'user' and 'group'. 
+                                By adding 'user' and 'group' after the parameters, we can specify a particular user or group. Combining these three pieces of information, the command now looks like 'find -size 33c -user bandit7 -group bandit6'.
+                        </p>
+
+                        <p>
+                            Next, the challenge is to determine "Where is the file?" According to the goal, the file exists somewhere on the server. Therefore, we scan the root directory, which includes all files on the system. With all the information we have, we entered 'find / -size 33c -user bandit7 -group bandit6'. 
+                            However, there are many files, and most of them we cannot view due to lack of permission. By searching for "permission denied" errors, I discovered that we can use '2>/dev/null' to suppress errors for files we don't have permission to access. 
+                            '2>/dev/null' helps exclude all errors by redirecting them to /dev/null. Therefore, using '2>/dev/null' causes all errors to disappear. By entering 'find / -size 33c -user bandit7 -group bandit6 2>/dev/null', we can easily obtain a path leading us to the key.
+                        </p>
+                            
+                        <h3>The Key</h3>
+                        <p><b>z7WtoNQU2XfjmMtWA8u5rN4vzqu4v99S</b></p>
+
+                        <img src="..\assets\img\level 7.png">
+                        <br><br>
+                        <h3>References</h3>
+                        <p>https://man7.org/linux/man-pages/man1/find.1.html</p>
+                        <p>https://arzhost.com/blogs/linux-find-ignore-permission-denied/</p>
+                        <p>https://stackoverflow.com/questions/762348/how-can-i-exclude-all-permission-denied-messages-from-find</p>
+
+                    </div>
+                </div>
+            </div>
+        </article>
+        <!-- Footer-->
+        <footer class="border-top">
+            <div class="container px-4 px-lg-5">
+                <div class="row gx-4 gx-lg-5 justify-content-center">
+                    <div class="col-md-10 col-lg-8 col-xl-7">
+                        <ul class="list-inline text-center">
+                            <li class="list-inline-item">
+                                <a href="https://github.com/CLoveYC" target="_blank" rel="noreferrer noopenner">
+                                    <span class="fa-stack fa-lg">
+                                        <i class="fas fa-circle fa-stack-2x"></i>
+                                        <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+                                    </span>
+                                </a>
+                            </li>
+                        </ul>
+                        <div class="small text-center text-muted fst-italic">Copyright &copy; CLoveYC's Website</div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <!-- Bootstrap core JS-->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Core theme JS-->
+        <script src="js/scripts.js"></script>
+    </body>
+</html>
